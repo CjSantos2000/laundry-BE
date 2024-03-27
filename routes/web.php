@@ -43,6 +43,16 @@ use App\Http\Controllers\Web\ShopAdmin\ShopAdminTransactionModeController;
 use App\Http\Controllers\Web\ShopAdmin\ShopAdminGarmentController;
 use App\Http\Controllers\Web\ShopAdmin\ShopAdminLaundryServiceController;
 use App\Http\Controllers\Web\ShopAdmin\ShopAdminAdditionalLaundryServiceController;
+use App\Http\Controllers\Web\Customer\CustomerGarmentController;
+
+Route::prefix('garments')->group(function () {
+    Route::get('/', [CustomerGarmentController::class, 'index'])->name('garments.index');
+    Route::get('/create', [CustomerGarmentController::class, 'create'])->name('garments.create');
+    Route::post('/store', [CustomerGarmentController::class, 'store'])->name('garments.store');
+    Route::get('/edit/{id}', [CustomerGarmentController::class, 'edit'])->name('garments.edit');
+    Route::put('/update/{id}', [CustomerGarmentController::class, 'update'])->name('garments.update');
+    Route::delete('/delete/{id}', [CustomerGarmentController::class, 'destroy'])->name('garments.destroy');
+});
 
 Route::get('/', [LandingPageController::class, 'index'])->name('index');
 Route::get('/services', [LandingPageController::class, 'services'])->name('services');
@@ -50,10 +60,13 @@ Route::get('/contact', [LandingPageController::class, 'contact'])->name('contact
 
 Route::get('/storage/{imageName}', [CustomerAccountController::class, 'getImage'])->name('image');
 
+
+
 Route::prefix('customers')->group(function () {
     Route::get('/login', [CustomerAuthController::class, 'login'])->name('customers.login');
     Route::get('/register', [CustomerAuthController::class, 'register'])->name('customers.register');
     Route::post('/login', [CustomerAuthController::class, 'processLogin'])->name('customers.process.login');
+    Route::post('/login/guest', [CustomerAuthController::class, 'guestLogin'])->name('customers.process.guest_login');
     Route::post('/register', [CustomerAuthController::class, 'processRegister'])->name('customers.process.register');
 
     Route::middleware(['auth:customer'])->group(function () {
@@ -65,17 +78,20 @@ Route::prefix('customers')->group(function () {
 
         Route::get('/laundry-shops', [CustomerLaundryShopController::class, 'index'])->name('customers.laundry-shops.index');
         Route::get('/laundry-shops/{id}', [CustomerLaundryShopController::class, 'transactionModes'])->name('customers.laundry-shops.transaction-modes');
-        Route::get('/laundry-shops/{id}/{transaction_id}', [CustomerLaundryShopController::class, 'services'])->name('customers.laundry-shops.services');
-        Route::get('/laundry-shops/{id}/services/{service_id}', [CustomerLaundryShopController::class, 'additionalServices'])->name('customers.laundry-shops.additional-services');
-        Route::get('/laundry-shops/{id}/services/{service_id}/garments', [CustomerLaundryShopController::class, 'garments'])->name('customers.laundry-shops.garments');
-
+        Route::get('/laundry-shops/{id}/{transaction_mode_id}', [CustomerLaundryShopController::class, 'services'])->name('customers.laundry-shops.services');
+        Route::get('/laundry-shops/{id}/services/{service_id}/{transaction_mode_id}', [CustomerLaundryShopController::class, 'additionalServices'])->name('customers.laundry-shops.additional-services');
+        Route::get('/laundry-shops/{id}/services/{service_id}/{transaction_mode_id}/garments', [CustomerLaundryShopController::class, 'garments'])->name('customers.laundry-shops.garments');
+     
         Route::get('/transactions', [CustomerTransactionController::class, 'index'])->name('customers.transactions.index');
         Route::get('/transactions/{id}', [CustomerTransactionController::class, 'view'])->name('customers.transactions.view');
 
-        Route::get('/cart', [CustomerCartController::class, 'index'])->name('customers.cart.index');
+        Route::post('/cart/add', [CustomerCartController::class, 'add'])->name('customers.cart.add');
+        Route::get('/cart', [CustomerCartController::class, 'index'])->name('customers.index');
+
 
         Route::post('/logout', [CustomerAuthController::class, 'logout'])->name('customers.logout');
     });
+  
 });
 
 Route::prefix('riders')->group(function () {

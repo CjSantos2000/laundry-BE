@@ -45,7 +45,7 @@
                 Effortless Clean, Delivered 
                 to Your Doorstep: 
               </span>
-                <span class="text-dark fw-bolder">Discover WashEase 
+                <span class="text-dark fw-bolder">Discover WashEasee 
                 Laundry - Experience 
                 Freshness.</span></h1>
               <p class="text-dark">
@@ -53,7 +53,7 @@
                 Where Quality Meets Care. Trust Your Clothes to Our Expert Hands.
               </p>
               <p>
-                <a class="btn btn-lg btn-primary" href="#">Schedule a pickup</a>
+                <a class="btn btn-lg btn-primary"  href="{{ route('customers.login') }}">Schedule a pickup</a>
               </p>
             </div>
           </div>
@@ -79,7 +79,7 @@
                 Where Quality Meets Care. Trust Your Clothes to Our Expert Hands.
               </p>
               <p>
-                <a class="btn btn-lg btn-primary" href="#">Schedule a pickup</a>
+                <a class="btn btn-lg btn-primary"  href="{{ route('customers.login') }}">Schedule a pickup</a>
               </p>
             </div>
           </div>
@@ -105,7 +105,7 @@
                 Where Quality Meets Care. Trust Your Clothes to Our Expert Hands.
               </p>
               <p>
-                <a class="btn btn-lg btn-primary" href="#"
+                <a class="btn btn-lg btn-primary"  href="{{ route('customers.login') }}"
                   >Schedule a pickup</a
                 >
               </p>

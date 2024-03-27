@@ -15,7 +15,7 @@
                                 <div class="card">
                                     <div class="card-body">
                                     <h5 class="card-title">{{ $transaction_mode->name }}</h5>
-                                    <a href="{{ route('customers.laundry-shops.services', $shop_admins->id) }}" class="btn btn-primary w-100 mt-2">{{ $transaction_mode->price }} pesos</a>
+                                    <a href="{{ route('customers.laundry-shops.services', ['id' => $shop_admins->id, 'transaction_mode_id' => $transaction_mode->id]) }}" class="btn btn-primary w-100 mt-2">{{ $transaction_mode->price }} pesos</a>
                                     </div>
                                 </div>
                             </div>

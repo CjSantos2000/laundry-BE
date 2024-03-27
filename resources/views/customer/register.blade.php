@@ -47,7 +47,7 @@
                             </ul>
                         </div>
                     @endif
-                  <form method="post" action="{{ route('customers.process.register') }}">
+                    <form method="post" action="{{ route('customers.process.register') }}" enctype="multipart/form-data">
                     @csrf
                     <div class="input-group mb-3 mt-4">
                         <span class="input-group-text"
@@ -125,10 +125,15 @@
                             placeholder="Confirm Password"
                             name="password_confirmation"
                         />
-                    </div>
-                    <button type="submit" class="btn btn-primary w-100">
-                      Register
-                    </button>
+                            </div?>
+                 
+                      <div class="input-group mb-3 mt-4">
+                       
+                        <input type="file" class="form-control visually-hidden" name="image" id="image" accept="image/*">
+                        <label for="image" class="btn btn-primary w-100">Choose Image</label>
+                      </div>
+                      <button type="submit" class="btn btn-primary w-100">Register</button>
+                 
                   </form>
                   <a href="{{ route('customers.login') }}" class="btn btn-success w-100 mt-2">
                     Already have an account?

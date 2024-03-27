@@ -11,17 +11,31 @@ use Illuminate\Support\Facades\Validator;
 class CustomerAccountController extends Controller
 {
     public function editProfile(){
+        if (auth()->id() == 12) {
+            auth()->logout();
+            return redirect()->route('customers.login')->with('error', 'Customer accounts only');
+        }
+
         return view('customer.edit-profile');
     }
     public function changePassword(){
+        if (auth()->id() == 12) {
+            // Log out the currently authenticated user
+            auth()->logout();
+
+            // Redirect to the login page with a message
+            return redirect()->route('customers.login')->with('error', 'Customer accounts only');
+        }
         return view('customer.change-password');
     }
-    public function processEditProfile(Request $request){
+    public function processEditProfile(Request $request){    
         $user = User::find(auth()->guard('customer')->user()->id);
         $user->first_name = $request->first_name;
         $user->last_name = $request->last_name;
         $user->address = $request->address;
         $user->phone_number = $request->phone_number;
+        $user->latitude =0;
+        $user->longtitude =0;
         $user->email = $request->email;
         
         if ($request->hasFile('image')) {
@@ -30,9 +44,9 @@ class CustomerAccountController extends Controller
             $path = $image->storeAs('uploads', $imageName, 'public');
             $user->image = $path;
         }
-
+    
         $user->save();
-
+    
         return redirect('/customers/edit-profile')->with('success', 'Profile updated successfully');
     }
     public function processChangePassword(Request $request){

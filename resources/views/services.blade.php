@@ -16,45 +16,69 @@
         <div class="col-12">
             <div class="row">
                 <div class="col-lg-4 col-6">
+                 
+                    <a href="{{ route('customers.login') }}" style="text-decoration: none;">
                     <div class="card">
                     <img src="assets/images/service-5.jpg" class="card-img-top" alt="...">
                     <div class="card-body">
+                  
                         <h3 class="card-title text-dark fw-bolder text-center py-3">Wash Only</h3>
                     </div>
                     </div>
+                    </a>
                 </div>
+
                 <div class="col-lg-4 col-6">
+                    <a href="{{ route('customers.login') }}" style="text-decoration: none;">
                     <div class="card">
-                    <img src="assets/images/service-4.jpg" class="card-img-top" alt="...">
+                            <img src="assets/images/service-4.jpg" class="card-img-top" alt="...">
+                      
                     <div class="card-body">
                         <h3 class="card-title text-dark fw-bolder text-center py-3">Dry Only</h3>
                     </div>
+                </a>
                     </div>
                 </div>
+
                 <div class="col-lg-4 col-6">
+                    <a href="{{ route('customers.login') }}" style="text-decoration: none;">
                     <div class="card">
-                    <img src="assets/images/service-1.jpg" class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <h3 class="card-title text-dark fw-bolder text-center py-3">Full Service (Wash, Dry, Fold)</h3>
+                        
+                        <img src="assets/images/service-1.jpg" class="card-img-top" alt="...">
+                        <div class="card-body">
+                    
+                            <h3 class="card-title text-dark fw-bolder text-center py-3">Full Service (Wash, Dry, Fold)</h3>
+                        </div>
                     </div>
-                    </div>
+                    </a>
                 </div>
+
                 <div class="col-lg-4 col-6">
-                    <div class="card">
-                    <img src="assets/images/service-2.jpg" class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <h3 class="card-title text-dark fw-bolder text-center py-3">Ironing</h3>
-                    </div>
-                    </div>
+                    <a href="{{ route('customers.login') }}" style="text-decoration: none;">
+                        <div class="card">
+                            
+                        <img src="assets/images/service-2.jpg" class="card-img-top" alt="...">
+                        
+                            <div class="card-body">
+                                <h3 class="card-title text-dark fw-bolder text-center py-3">Ironing</h3>
+                            </div>
+                        </div>
+                    </a>
                 </div>
+
                 <div class="col-lg-4 col-6">
-                    <div class="card">
-                    <img src="assets/images/service-3.jpg" class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <h3 class="card-title text-dark fw-bolder text-center py-3">Dry Cleaning</h3>
-                    </div>
-                    </div>
+                    <a href="{{ route('customers.login') }}" style="text-decoration: none;">
+                        <div class="card">
+                            
+                        <img src="assets/images/service-3.jpg" class="card-img-top" alt="...">
+                    
+                        <div class="card-body">
+                            <h3 class="card-title text-dark fw-bolder text-center py-3">Dry Cleaning</h3>
+                        </div>
+                        </div>
+                    </a>
                 </div>
+
             </div>
             <hr class="featurette-divider" />
         </div>

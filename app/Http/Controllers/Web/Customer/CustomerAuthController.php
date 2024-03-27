@@ -30,7 +30,7 @@ class CustomerAuthController extends Controller
             $user = Auth::guard('customer')->user();
             
             if ($user->role_id === 1) {
-                return redirect()->intended('/customers/dashboard');
+                return redirect()->intended('/customers/laundry-shops');
             }
     
             Auth::guard('customer')->logout();
@@ -38,22 +38,24 @@ class CustomerAuthController extends Controller
         }
         return redirect()->route('customers.login')->with('error', 'Invalid credentials');
     }
-    public function processRegister(Request $request){
-        $validator = Validator::make($request->all(), [
-            'first_name' => 'required',
-            'last_name' => 'required',
-            'address' => 'required',
-            'phone_number' => 'required',
-            'email' => 'required|email|unique:users',
-            'password' => ['required', 'confirmed'],
-        ]);
 
+    public function guestLogin(Request $request){
+        Auth::guard('customer')->loginUsingId(12); // Assuming guest user has ID 1
+        return redirect()->intended('/customers/laundry-shops');
+    }
+    
+    public function processRegister(Request $request){
+        // Validation rules
+        $validator = Validator::make($request->all(), [
+            'image' => 'image|mimes:jpeg,png,jpg,gif|max:5048', 
+        ]);
+    
         if ($validator->fails()) {
             return redirect()->route('customers.register')
                 ->withErrors($validator)
                 ->withInput();
         }
-
+    
         $user = new User();
         $user->role_id = 1;
         $user->first_name = $request->first_name;
@@ -61,13 +63,22 @@ class CustomerAuthController extends Controller
         $user->address = $request->address;
         $user->phone_number = $request->phone_number;
         $user->email = $request->email;
+        $user->latitude =0;
+        $user->longtitude =0;
         $user->password = Hash::make($request->password);
-        $user->save();
+        if ($request->hasFile('image')) {
+            $image = $request->file('image');
+            $imageName = time() . '.' . $image->getClientOriginalExtension();
+            $path = $image->storeAs('uploads', $imageName, 'public');
+            $user->image = $path;
+        }
+        $user->save();  
 
         return redirect()->route('customers.login')->with('success', 'Customer created successfully');
     }
     public function logout(){
         Auth::guard('customer')->logout();
-        return redirect('/customers/login');
+        return redirect()->route('index');
+        
     }
 }
