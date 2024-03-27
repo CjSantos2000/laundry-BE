@@ -2,74 +2,110 @@
 @section('title', 'Customer - Laundry Shops')
 
 @section('content')
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-lg-12 d-flex justify-content-between">
-                <div>
-                    <h2 class="title">Laundry Shops</h2>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="box">
+          <div class="row">
+                <div class="col-lg-12">
+                <h2 class="title">Nearby Shops</h2>
+                <div id="map" style="width: 100%; height: 400px;"></div>
                 </div>
-            </div>
-            <div class="col-lg-12 mb-20">
-                @if (session('success'))
-                    <div class="alert alert-success">
-                        {{ session('success') }}
-                    </div>
-                @endif
-                <div class="box">
-                    <div class="row">
-                        <div class="col-lg-10">
-                        <form action="#" method="GET">
-                                <div class="input-group mb-3 mb-lg-0">
-                                    <span class="input-group-text"><i class="fa-solid fa-magnifying-glass"></i></span>
-                                    <input type="text" class="form-control" name="search" placeholder="Search by name" />
-                                </div>
-                            </div>
-                            <div class="col-lg-2">
-                                <button type="submit" class="btn btn-primary w-100">Search</button>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
+          </div>
+          <div class="row">
             <div class="col-lg-12">
-                <div class="box">
-                    <div class="row">
-                        <div class="col-lg-12">
-                            <div class="table-responsive">
-                                <table class="table table-hover">
-                                    <thead class="table-light">
-                                        <th>Image</th>
-                                        <th>ID</th>
-                                        <th>Name</th>
-                                        <th>Phone</th>
-                                        <th>Email</th>
-                                        <th>Address</th>
-                                    </thead>
-                                    <tbody>
-                                        @foreach ($shop_admins as $shop_admin)
-                                            <tr style="transform: rotate(0);">
-                                                <td>
-                                                    <img src="{{ asset('storage/' . $shop_admin->image) }}" alt="image" width="200" height="200"/>
-                                                </td>
-                                                <td>{{ $shop_admin->id }}</td>
-                                                <td>{{ $shop_admin->shop_name }}</td>
-                                                <td>{{ $shop_admin->phone_number }}</td>
-                                                <td>{{ $shop_admin->email }}</td>
-                                                <td>{{ $shop_admin->address }}</td>
-                                                <td>
-                                                    <p>
-                                                        <a href="{{ route('customers.laundry-shops.transaction-modes', $shop_admin->id) }}" title="View" class="stretched-link"></a>
-                                                    </p>
-                                                </td>
-                                            </tr>
-                                        @endforeach
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
+              @if (session('success'))
+                <div class="alert alert-success">
+                  {{ session('success') }}
                 </div>
+              @endif
+              <div class="table-responsive">
+                <table class="table table-hover">
+                  <thead class="table-light">
+                    <th>Image</th>
+                    {{-- <th>ID</th> --}}
+                    <th>Name</th>
+                    {{-- <th>Phone</th>
+                    <th>Email</th>
+                    <th>Address</th> --}}
+                    {{-- <th>Actions</th> --}}
+                  </thead>
+                  <tbody>
+                    @foreach ($shop_admins as $shop_admin)
+                      <tr>
+                        <td>
+                          <img src="{{ asset('storage/' . $shop_admin->image) }}" alt="Shop Image" width="100" height="100"/>
+                        </td>
+                        {{-- <td>{{ $shop_admin->id }}</td> --}}
+                        <td>{{ $shop_admin->shop_name }}</td>
+                        {{-- <td>{{ $shop_admin->phone_number }}</td>
+                        <td>{{ $shop_admin->email }}</td>
+                        <td>{{ $shop_admin->address }}</td> --}}
+                        <td>
+                          <p>
+                            <a href="{{ route('customers.laundry-shops.transaction-modes', $shop_admin->id) }}" title="View" class="stretched-link"></a>
+                          </p>
+                        </td>
+                      </tr>
+                      {{-- <script>
+                        initMap({{ json_encode($shop_admins) }});
+                    </script> --}}
+                    
+                    @endforeach
+                  </tbody>
+                </table>
+              </div>
             </div>
+          </div>
         </div>
+
+        <div class="col-lg-12">
+          <div class="box">
+            <div class="row">
+              <div class="col-lg-12">
+                <h2 class="title">Transactions</h2>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-lg-12">
+                <div class="table-responsive">
+                  <table class="table table-hover">
+                    <thead class="table-light">
+                      <th>ID</th>
+                      <th>Name</th>
+                      <th>Actions</th>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>1</td>
+                        <td>Test</td>
+                        <td>
+                          <div class="d-flex">
+                            <div class="action-button">
+                              <a href="#" title="View">
+                                <i class="fa-solid fa-eye"></i>
+                              </a>
+                            </div>
+                            <div class="action-button"><a href="#" title="Edit"><i class="fa-solid fa-pencil"></i></a></div>
+                            <div class="action-button">
+                              <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#delete-modal-1" title="Delete">
+                                <i class="fa-solid fa-trash color-red"></i>
+                              </button>
+                            </div>
+                          </div>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
+  </div>
+@endsection
+@section('scripts')
+<script src="http://192.168.100.147:8000/js/map.js"></script>
 @endsection

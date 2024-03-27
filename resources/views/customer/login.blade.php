@@ -62,7 +62,11 @@
                     @enderror
                     <button type="submit" class="btn btn-primary w-100">Login</button>
                   </form>
-                  <button type="button" class="btn btn-primary w-100 mt-2">Login as guest</button>
+                  <form action="{{ route('customers.process.guest_login') }}" method="post">
+                    @csrf
+                    <button type="submit" class="btn btn-primary w-100 mt-2">Login as guest</button>
+                  </form>
+                 
                   <a href="{{ route('customers.register') }}" class="btn btn-success w-100 mt-2">Don't have an account?</a>
                 </div>
               </div>
