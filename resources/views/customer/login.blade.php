@@ -15,6 +15,7 @@
     />
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/style.css') }}" />
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/responsive.css') }}" />
+    <link rel="stylesheet" type="text/css" href="{{ asset('resources\css\app.css') }}" />
     <link rel="icon" href="{{ asset('assets/images/logo.png') }}" type="image/png">
     <title>Customer - Login</title>
   </head>
@@ -66,8 +67,13 @@
                     @csrf
                     <button type="submit" class="btn btn-primary w-100 mt-2">Login as guest</button>
                   </form>
-                 
-                  <a href="{{ route('customers.register') }}" class="btn btn-success w-100 mt-2">Don't have an account?</a>
+                  <div class="center-link-container">
+                    <a href="{{ route('customers.register') }}">Don't have an account?</a>
+                  </div>
+                  <div class="center-link-container">
+                    <a href="{{ route('shop_admins.login') }}">Shop Admin Account</a>
+                  </div>
+                
                 </div>
               </div>
             </div>

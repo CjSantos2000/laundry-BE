@@ -51,7 +51,7 @@
                                         <th>ID</th>
                                         <th>First name</th>
                                         <th>Last name</th>
-                                        <th>Email</th>
+                                        <th>Address</th>
                                         <th>Date created</th>
                                         <th>Actions</th>
                                     </thead>
@@ -61,7 +61,7 @@
                                                 <td>{{ $staff->id }}</td>
                                                 <td>{{ $staff->first_name }}</td>
                                                 <td>{{ $staff->last_name }}</td>
-                                                <td>{{ $staff->email }}</td>
+                                                <td>{{ $staff->address }}</td>
                                                 <td>{{ \Carbon\Carbon::parse($staff->created_at)->format('F j, Y g:i a') }}</td>
                                                 <td>
                                                     <div class="d-flex">

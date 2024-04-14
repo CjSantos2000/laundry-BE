@@ -34,7 +34,7 @@ class ShopAdminAdditionalLaundryServiceController extends Controller
     }
     public function processAdd(Request $request){
         $validator = Validator::make($request->all(), [
-            'service_id' => 'required',
+            // 'service_id' == 1 ,
             'name' => 'required',
             'description' => 'required',
             'price' => 'required',
@@ -47,7 +47,7 @@ class ShopAdminAdditionalLaundryServiceController extends Controller
         }
 
         $additional_service = new AdditionalService();
-        $additional_service->service_id = $request->service_id;
+        $additional_service->service_id = 1;
         $additional_service->name = $request->name;
         $additional_service->description = $request->description;
         $additional_service->price = $request->price;
@@ -83,7 +83,7 @@ class ShopAdminAdditionalLaundryServiceController extends Controller
     }
     public function processEdit(Request $request, $id){
         $validator = Validator::make($request->all(), [
-            'service_id' => 'required',
+            // 'service_id' == 1,
             'name' => 'required',
             'description' => 'required',
             'price' => 'required',
@@ -107,7 +107,7 @@ class ShopAdminAdditionalLaundryServiceController extends Controller
         $additional_services->name = $request->name;
         $additional_services->description = $request->description;
         $additional_services->price = $request->price;
-        $additional_services->service_id = $request->service_id;
+        $additional_services->service_id = 1;
         $additional_services->save();
 
         return redirect()->route('shop_admins.additional-laundry-services.edit', $id)->with('success', 'Additional Laundry Service edited successfully');

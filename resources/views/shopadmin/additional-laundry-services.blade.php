@@ -6,11 +6,11 @@
         <div class="row">
             <div class="col-lg-12 d-flex justify-content-between">
                 <div>
-                    <h2 class="title">Additional Laundry Services</h2>
+                    <h2 class="title">Dry Cleaning</h2>
                 </div>
                 <div class="d-flex align-items-center">
                     <a class="btn btn-primary" href="{{ route('shop_admins.additional-laundry-services.add') }}">
-                        <i class="fa-solid fa-user"></i>&nbsp;&nbsp;&nbsp;Add Additional Laundry Services
+                        <i class="fa-solid fa-user"></i>&nbsp;&nbsp;&nbsp;Add Dry Cleaning
                     </a>
                 </div>
             </div>

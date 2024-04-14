@@ -6,11 +6,11 @@
         <div class="row">
             <div class="col-lg-12 d-flex justify-content-between">
                 <div>
-                    <h2 class="title">Laundry Services</h2>
+                    <h2 class="title">Basic Services</h2>
                 </div>
                 <div class="d-flex align-items-center">
                     <a class="btn btn-primary" href="{{ route('shop_admins.laundry-services.add') }}">
-                        <i class="fa-solid fa-user"></i>&nbsp;&nbsp;&nbsp;Add Laundry Service
+                        <i class="fa-solid fa-user"></i>&nbsp;&nbsp;&nbsp;Add Basic Service
                     </a>
                 </div>
             </div>
@@ -45,6 +45,7 @@
                                     <thead class="table-light">
                                         <th>ID</th>
                                         <th>Name</th>
+                                        <th>Description</th>
                                         <th>Price</th>
                                         <th>Actions</th>
                                     </thead>
@@ -53,6 +54,7 @@
                                             <tr>
                                                 <td>{{ $service->id }}</td>
                                                 <td>{{ $service->name }}</td>
+                                                <td>{{ $service->description }}</td>
                                                 <td>{{ $service->price }}</td>
                                                 <td>
                                                     <div class="d-flex">

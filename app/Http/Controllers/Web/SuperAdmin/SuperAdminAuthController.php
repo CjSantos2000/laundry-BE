@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Auth;
 class SuperAdminAuthController extends Controller
 {
     public function login(){
-        if (Auth::guard('superadmin')->check()) {
+        if (Auth::guard('web')->check()) {
             return redirect('/super_admins/dashboard');
         }
         return view('superadmin.login');
@@ -30,8 +30,8 @@ class SuperAdminAuthController extends Controller
         return redirect()->route('super_admins.login')->with('error', 'Invalid credentials');
     }
     public function logout(){
-        Auth::guard('superadmin')->logout();
-        return redirect('/super_admins/login');
+        Auth::guard('web')->logout();
+        return redirect('/');
     }
     public function subscription(){
         return view('superadmin.subscription');

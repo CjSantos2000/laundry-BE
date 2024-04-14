@@ -61,15 +61,16 @@ Route::get('/contact', [LandingPageController::class, 'contact'])->name('contact
 Route::get('/storage/{imageName}', [CustomerAccountController::class, 'getImage'])->name('image');
 
 
-
+Route::get('/login', [CustomerAuthController::class, 'login'])->name('customers.login');
+Route::post('/login', [CustomerAuthController::class, 'processLogin'])->name('customers.process.login');
 Route::prefix('customers')->group(function () {
-    Route::get('/login', [CustomerAuthController::class, 'login'])->name('customers.login');
+  
     Route::get('/register', [CustomerAuthController::class, 'register'])->name('customers.register');
-    Route::post('/login', [CustomerAuthController::class, 'processLogin'])->name('customers.process.login');
+  
     Route::post('/login/guest', [CustomerAuthController::class, 'guestLogin'])->name('customers.process.guest_login');
     Route::post('/register', [CustomerAuthController::class, 'processRegister'])->name('customers.process.register');
 
-    Route::middleware(['auth:customer'])->group(function () {
+    Route::middleware(['auth:web'])->group(function () {
         Route::get('/dashboard', [CustomerDashboardController::class, 'index'])->name('customers.dashboard.index');
         Route::get('/edit-profile', [CustomerAccountController::class, 'editProfile'])->name('customers.account.edit-profile');
         Route::get('/change-password', [CustomerAccountController::class, 'changePassword'])->name('customers.account.change-password');
@@ -98,7 +99,7 @@ Route::prefix('riders')->group(function () {
     Route::get('/login', [RiderAuthController::class, 'login'])->name('riders.login');
     Route::post('/login', [RiderAuthController::class, 'processLogin'])->name('riders.process.login');
 
-    Route::middleware(['auth:rider'])->group(function () {
+    Route::middleware(['auth:web'])->group(function () {
         Route::get('/dashboard', [RiderDashboardController::class, 'index'])->name('riders.dashboard.index');
         Route::get('/edit-profile', [RiderAccountController::class, 'editProfile'])->name('riders.account.edit-profile');
         Route::get('/change-password', [RiderAccountController::class, 'changePassword'])->name('riders.account.change-password');
@@ -118,7 +119,7 @@ Route::prefix('staffs')->group(function () {
     Route::get('/login', [StaffAuthController::class, 'login'])->name('staffs.login');
     Route::post('/login', [StaffAuthController::class, 'processLogin'])->name('staffs.process.login');
 
-    Route::middleware(['auth:staff'])->group(function () {
+    Route::middleware(['auth:web'])->group(function () {
         Route::get('/dashboard', [StaffDashboardController::class, 'index'])->name('staffs.dashboard.index');
         Route::get('/edit-profile', [StaffAccountController::class, 'editProfile'])->name('staffs.account.edit-profile');
         Route::get('/change-password', [StaffAccountController::class, 'changePassword'])->name('staffs.account.change-password');
@@ -228,7 +229,7 @@ Route::prefix('super_admins')->group(function () {
     Route::get('/login', [SuperAdminAuthController::class, 'login'])->name('super_admins.login');
     Route::post('/login', [SuperAdminAuthController::class, 'processLogin'])->name('super_admins.process.login');
 
-    Route::middleware(['auth:superadmin'])->group(function () {
+    Route::middleware(['auth:web'])->group(function () {
         Route::get('/dashboard', [SuperAdminDashboardController::class, 'index'])->name('super_admins.dashboard.index');
         Route::get('/edit-profile', [SuperAdminAccountController::class, 'editProfile'])->name('super_admins.account.edit-profile');
         Route::get('/change-password', [SuperAdminAccountController::class, 'changePassword'])->name('super_admins.account.change-password');

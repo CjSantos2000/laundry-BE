@@ -12,13 +12,13 @@ use Illuminate\Support\Facades\Hash;
 class CustomerAuthController extends Controller
 {
     public function login(){
-        if (Auth::guard('customer')->check()) {
-            return redirect('/customers/dashboard');
-        }
+        // if (Auth::guard('web')->check()) {
+        //     return redirect('/');
+        // }
         return view('customer.login');
     }
     public function register(){
-        if (Auth::guard('customer')->check()) {
+        if (Auth::guard('web')->check()) {
             return redirect('/customers/dashboard');
         }
         return view('customer.register');
@@ -26,21 +26,33 @@ class CustomerAuthController extends Controller
     public function processLogin(Request $request){
         $credentials = $request->only('email', 'password');
     
-        if (Auth::guard('customer')->attempt($credentials)) {
-            $user = Auth::guard('customer')->user();
+        if (Auth::guard('web')->attempt($credentials)) {
+            $user = Auth::guard('web')->user();
             
             if ($user->role_id === 1) {
                 return redirect()->intended('/customers/laundry-shops');
             }
-    
-            Auth::guard('customer')->logout();
+            else if ($user->role_id === 3) {
+                return redirect()->intended('/riders/dashboard');
+            }
+            else if ($user->role_id === 2) {
+                return redirect()->intended('/staffs/dashboard');
+            }
+            else if ($user->role_id === 5) {
+                return redirect()->intended('/supderadmin/dashboard');
+            } 
+            else{
+                return redirect()->route('customers.login')->with('error', 'Invalid credentials');
+
+            }
+           // Auth::guard('web')->logout();
             return redirect()->route('customers.login')->with('error', 'Invalid credentials');
         }
         return redirect()->route('customers.login')->with('error', 'Invalid credentials');
     }
 
     public function guestLogin(Request $request){
-        Auth::guard('customer')->loginUsingId(12); // Assuming guest user has ID 1
+        Auth::guard('web')->loginUsingId(12); // Assuming guest user has ID 1
         return redirect()->intended('/customers/laundry-shops');
     }
     
@@ -77,7 +89,7 @@ class CustomerAuthController extends Controller
         return redirect()->route('customers.login')->with('success', 'Customer created successfully');
     }
     public function logout(){
-        Auth::guard('customer')->logout();
+        Auth::guard('web')->logout();
         return redirect()->route('index');
         
     }

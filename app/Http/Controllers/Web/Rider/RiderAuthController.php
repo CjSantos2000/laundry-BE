@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\Hash;
 class RiderAuthController extends Controller
 {
     public function login(){
-        if (Auth::guard('rider')->check()) {
+        if (Auth::guard('web')->check()) {
             return redirect('/riders/dashboard');
         }
         return view('rider.login');
@@ -20,20 +20,20 @@ class RiderAuthController extends Controller
     public function processLogin(Request $request){
         $credentials = $request->only('email', 'password');
     
-        if (Auth::guard('rider')->attempt($credentials)) {
-            $user = Auth::guard('rider')->user();
+        if (Auth::guard('web')->attempt($credentials)) {
+            $user = Auth::guard('web')->user();
             
             if ($user->role_id === 3) {
                 return redirect()->intended('/riders/dashboard');
             }
     
-            Auth::guard('rider')->logout();
+            Auth::guard('web')->logout();
             return redirect()->route('riders.login')->with('error', 'Invalid credentials');
         }
         return redirect()->route('riders.login')->with('error', 'Invalid credentials');
     }
     public function logout(){
-        Auth::guard('rider')->logout();
-        return redirect('/riders/login');
+        Auth::guard('web')->logout();
+        return redirect('/');
     }
 }
