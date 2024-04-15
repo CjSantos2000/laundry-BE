@@ -45,7 +45,7 @@
                 Effortless Clean, Delivered 
                 to Your Doorstep: 
               </span>
-                <span class="text-dark fw-bolder">Discover WashEasee 
+                <span class="text-dark fw-bolder">Discover WashEase
                 Laundry - Experience 
                 Freshness.</span></h1>
               <p class="text-dark">

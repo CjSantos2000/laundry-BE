@@ -44,13 +44,18 @@
         <nav id="column-left">
             <ul id="menu">
                 <li><a href="{{ route('shop_admins.dashboard.index') }}"><i class="fa-solid fa-gauge"></i> Dashboard</a></li>
+                <li><a href="{{ route('shop_admins.laundry-services.index') }}"><i class="fa-solid fa-square"></i> Basic Services</a></li>
+                <li><a href="{{ route('shop_admins.additional-laundry-services.index') }}"><i class="fa-solid fa-splotch"></i> Dry Cleaning</a></li>
+                <li><a href="{{ route('shop_admins.garments.index') }}"><i class="fa-solid fa-shirt"></i> Ironing</a></li>
+                <li><a href="{{ route('shop_admins.machines.index') }}"><i class="fa-solid fa-window-maximize"></i> Machines</a></li>
                 <li><a href="{{ route('shop_admins.staffs.index') }}"><i class="fa-solid fa-users"></i> Staffs</a></li>
                 <li><a href="{{ route('shop_admins.riders.index') }}"><i class="fa-solid fa-motorcycle"></i> Riders</a></li>
-                <li><a href="{{ route('shop_admins.machines.index') }}"><i class="fa-solid fa-window-maximize"></i> Machines</a></li>
-                <li><a href="{{ route('shop_admins.transaction-modes.index') }}"><i class="fa-solid fa-window-maximize"></i> Transaction Modes</a></li>
-                <li><a href="{{ route('shop_admins.garments.index') }}"><i class="fa-solid fa-shirt"></i> Garments</a></li>
-                <li><a href="{{ route('shop_admins.laundry-services.index') }}"><i class="fa-solid fa-square"></i> Laundry Services</a></li>
-                <li><a href="{{ route('shop_admins.additional-laundry-services.index') }}"><i class="fa-solid fa-splotch"></i> Additional Laundry Services</a></li>
+         
+                {{-- <li><a href="{{ route('shop_admins.transaction-modes.index') }}"><i class="fa-solid fa-window-maximize"></i> Transaction Modes</a></li> --}}
+                
+           
+              
+          
             </ul>
         </nav>
         <div id="content">

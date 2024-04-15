@@ -46,7 +46,7 @@
                                     <textarea class="form-control" id="description" name="description" rows="7">{{ $additional_service->description }}</textarea>
                                 </div>
                             </div>
-                            <div class="mb-3 row">
+                            {{-- <div class="mb-3 row">
                                 <label for="service_id" class="col-sm-12 col-lg-2 col-form-label">Laundry Services: <span class="required">*</span></label>
                                 <div class="col-lg-10 col-sm-12 d-flex align-items-center">
                                     <select name="service_id" id="service_id" class="form-select form-control">
@@ -55,7 +55,7 @@
                                         @endforeach
                                     </select>
                                 </div>
-                            </div>
+                            </div> --}}
                             <div class="d-flex justify-content-center mt-5 mb-4">
                                 <button class="btn btn-primary">Save</button>
                             </div>

@@ -25,7 +25,7 @@
                 <ul class="navbar-nav">
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            <img src="{{ route('image', ['imageName' => auth()->guard('staff')->user()->image == '' ? 'hey' : auth()->guard('staff')->user()->image]) }}" alt="Image" title="User" class="round" height="50" width="50"/> {{ auth()->guard('staff')->user()->first_name }} {{ auth()->guard('staff')->user()->last_name }}
+                            <img src="{{ route('image', ['imageName' => auth()->guard('web')->user()->image == '' ? 'hey' : auth()->guard('web')->user()->image]) }}" alt="Image" title="User" class="round" height="50" width="50"/> {{ auth()->guard('web')->user()->first_name }} {{ auth()->guard('web')->user()->last_name }}
                         </a>
                         <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownMenuLink">
                             <li><a class="dropdown-item" href="{{ route('staffs.account.edit-profile') }}">Edit Profile</a></li>
